@@ -48,6 +48,8 @@ Make an ordered list of 3 things you hope to achieve this semester, and elaborat
   - Don't get too wrapped up in academics
   - Appreciate what you have.
 
+*Classes*
+
 - PHYS 1116
 - MATH 1920
 - AEP 1200
