@@ -40,13 +40,13 @@ Make an ordered list of 3 things you hope to achieve this semester, and elaborat
 
 <!--- Write your answer here. --->
 1. Pass PHYS 1116
-  1. This class is important for my future major
-  2. It will help me better study sustainability
+  - This class is important for my future major
+  - It will help me better study sustainability
 2. Get more sleep
-  1. I was very unhealthy last semester
+  - I was very unhealthy last semester
 3. Enjoy my connections more
-  1. Don't get too wrapped up in academics
-  2. Appreciate what you have.
+  - Don't get too wrapped up in academics
+  - Appreciate what you have.
 
 - PHYS 1116
 - MATH 1920
