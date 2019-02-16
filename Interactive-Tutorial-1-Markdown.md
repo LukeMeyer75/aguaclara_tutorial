@@ -72,7 +72,7 @@ Insert the Cornell seal image with:
 
 ![Cornell Seal](https://raw.githubusercontent.com/AguaClara/aguaclara_tutorial/master/Images/Cornell_University_seal.svg.png)
 
-![Also the cornell seal](C:\Users\Luke Meyer\Downloads\seal)
+![Also the cornell seal](`/images/Cornell_University_seal.png`)
 
 ## Code Formatting
 
