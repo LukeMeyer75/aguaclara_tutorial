@@ -23,25 +23,6 @@ plt.grid(which = 'major')
 plt.grid(which = 'minor')
 plt.legend(loc = 'lower right', ncol = 1)
 plt.show()
-
-
-
-
-xArray = u.Quantity(np.arange(10, 100, 200))
-
-def re_flat_plate(velocity, dist, nu):
-  """This function calculates the Reynolds Number for flow past a plate using fluid velocity, plate length, and kinematic viscosity."""
-  return (velocity * dist / nu)
-
-plt.plot(xArray, 0.4 * u.m * 2 * u.m / u.s / pc.viscosity_kinematic(xArray * u.kelvin), '-', label = 'Reynolds Number')
-plt.xlabel('Temperature given in K')
-plt.ylabel('Reynolds Number')
-plt.title('Reynolds Number for varying Temperatures')
-plt.minorticks_on()
-plt.grid(which = 'major')
-plt.grid(which = 'minor')
-plt.legend(loc = 'lower right', ncol = 1)
-plt.show()
 ```
 
 ## Python Basics
@@ -51,10 +32,10 @@ These questions are meant to test what you've learned from the Python Basics tut
 
 <!--- Fill you answer here. --->
 ```python
-x=4
-if x == 10:
+x = float(input("What is the x value to be tested? "))
+if(x == 10):
   print('x is 10')
-elif x == 1:
+elif(x == 1):
   print('x is 1')
 else:
   print('x is not 1 or 10, it is:')
@@ -101,6 +82,13 @@ from aguaclara.play import*
 myList = [0, 1, 2, 3, 5]
 myArray = np.array(myList)
 myArrayUnits = myArray * u.m
+myList2 = [[0, 1, 2, 3, 5], [0, 1, 2, 3, 5], [0, 1, 2, 3, 5], [0, 1, 2, 3, 5], [0, 1, 2, 3, 5]]
+myArray2 = np.array(myList2)
+myArrayUnits2 = myArray2 * u.m
+midCol = myArrayUnits2[:,2]
+midRow = myArrayUnits2[2,:]
+sizeOf = np.size(myArrayUnits2)
+
 ```
 
 
@@ -118,42 +106,56 @@ $$ D = \frac{k_BT}{6\pi\eta r} $$
 
 ```python
 from scipy.constants import Boltzmann as kB_sc # I've imported the unitless value for kB from SciPy
+from scipy.constants import pi as pi1
 import math as m
 from aguaclara.play import*
 
 kB = kB_sc * u.joule / u.kelvin # I've given kB units for you in J/K; you can use the kB variable to give you Boltzmann's constant with units
-
 # Write your code
+greekPi = int(pi1)
 
-T = input("What is the temperature in Kelvin? ")
-T = T * u.kelvin
-eta = input("What is the the dynamic viscosity in kg/(m*s)? ")
-eta = eta * (u.kg / u.m / u.s)
-r = input("What is the radius in meters? ")
-r = r * u.m
+def einStoke(kBcst, TempIn, eta3, rnot, greekPicon):
+  return (kBcst * TempIn / 6 / greekPicon / eta3 / rnot)
 
-res = D(T,eta,r)
-print(res)
+T = int(float(input("What is the temperature in Kelvin? ")))
+Temp = T * u.kelvin
+eta = int(float(input("What is the the dynamic viscosity in kg/(m*s)? ")))
+eta2 = eta * (u.kg / u.m / u.s)
+r = int(float(input("What is the radius in meters? ")))
+r2 = r * u.m
+
+D = einStoke(kB, Temp, eta2, r2, greekPi)
+print(D)
 ```
 
 6. You have a pipe with a radius of 0.2 m with water flowing in it at 2 m<sup>3</sup>/s. You want to see how the Reynolds Number changes as viscosity changes due to a change in temperature from 0 to 200<sup>o</sup>C. Create a plot of Reynolds Number against Temperature in Kelvin to show a relationship. Make sure your plot has a title, labeled axes, and axes grid. You can use functions from `physchem` like `pc.re_pipe` and `pc.viscosity_kinematic`. *(Hint: Make an array of temperatures to input into the `pc.viscosity_kinematic` function)*. Make sure to save you plot to your images folder in your personal repository, and display it below using `plt.show()` and a relative file path to the image.
 
 <!--- Fill you answer here. --->
 ```python
-import math as m
-from aguaclara.play import*
+from aguaclara.play import *
 
-xArray = u.Quantity(np.arange(10, 100, 200))
+radius2 = 0.2 * u.m
 
-plt.plot(xArray, 0.4 * u.m * 2 * u.m / u.s / pc.viscosity_kinematic(xArray * u.kelvin), '-', label = 'Reynolds Number')
-plt.xlabel('Temperature given in K')
+velocity2 = 2 * u.m / u.s
+
+xArray = u.Quantity(np.arange(10, 100, 200), u.kelvin)
+
+def re_pipe(velocity, radius, nu):
+  """This function calculates the Reynolds Number for flow past a plate using fluid velocity, plate length, and kinematic viscosity."""
+  return (velocity * radius / nu)
+
+plt.plot(xArray, re_pipe(velocity2, radius2, pc.viscosity_kinematic(xArray)), '-', label = 'Reynolds Numbers')
+plt.xlabel('Temperature (Kelvin)')
 plt.ylabel('Reynolds Number')
-plt.title('Reynolds Number for varying Temperatures')
+plt.title('Temperature vs. Reynolds Number')
 plt.minorticks_on()
 plt.grid(which = 'major')
 plt.grid(which = 'minor')
 plt.legend(loc = 'lower right', ncol = 1)
 plt.show()
+
+![Link to screenshot](`/images/screenshot2.png`)
+
 ```
 
 # GitHub Basics
